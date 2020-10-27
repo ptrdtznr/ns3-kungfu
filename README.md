@@ -63,7 +63,9 @@ I am working with [vscode](https://code.visualstudio.com/), a super code editor.
 {
     // Launch config emulates waf environment, calls gdb directly
 	"version": "0.2.0",
-	"configurations": [{
+	"configurations":
+    [
+        {
 			"name": "(gdb) nbaton-ns3",
 			"type": "cppdbg",
 			"request": "launch",
@@ -114,12 +116,14 @@ I am working with [vscode](https://code.visualstudio.com/), a super code editor.
 				"trace": true
 			}
 		}
-
 	]
 }
 ```
 
 ## tasks.json
+
+Since your module is located in `ns-3/contrib/your-module` you can simply call the `./waf build` command with a relativ path like this:
+
 ```json
 {
 	"version": "2.0.0",
