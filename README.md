@@ -61,7 +61,7 @@ I am working with [vscode](https://code.visualstudio.com/), a super code editor.
 ```
 
 ## launch.json
-Launch config emulates waf environment, which calls gdb directly. My build folder is ${workspaceFolder}/build, substitute it with yours. Replace the values inside `environment` below with those found from running by executing in your ns-3 folder:
+Launch config emulates waf environment, which calls gdb directly. My build folder is `${workspaceFolder}/build`, substitute it with yours. Replace the values inside `environment` below with those found from running by executing in your ns-3 folder:
 
 ```
 ./waf shell
