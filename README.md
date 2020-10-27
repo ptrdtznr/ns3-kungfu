@@ -42,81 +42,82 @@ I am working with [vscode](https://code.visualstudio.com/), a super code editor.
 ## c_cpp_properties.json
 ```json
 {
-	"configurations": [{
-		"name": "Linux",
-		"includePath": [
-			"${workspaceFolder}/**",
-			"~/bake/source/ns-3.31/build"
-		],
-		"defines": [],
-		"compilerPath": "/usr/bin/gcc",
-		"cppStandard": "gnu++17",
-		"intelliSenseMode": "gcc-x64",
-		"compileCommands": "~/bake/source/ns-3.31/build/compile_commands.json"
-	}],
-	"version": 4
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "~/bake/source/ns-3.31/build"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/gcc",
+            "cppStandard": "gnu++17",
+            "intelliSenseMode": "gcc-x64",
+            "compileCommands": "~/bake/source/ns-3.31/build/compile_commands.json"
+        }
+    ],
+    "version": 4
 }
 ```
 
 ## launch.json
-```jsonc
+Launch config emulates waf environment, which calls gdb directly. My build folder is ${workspaceFolder}/build, substitute it with yours. Replace the values inside `environment` below with those found from running by executing in your ns-3 folder:
+
+```
+./waf shell
+env 
+```
+
+```
 {
-    // Launch config emulates waf environment, calls gdb directly
-	"version": "0.2.0",
-	"configurations":
-    [
+    "version": "0.2.0",
+    "configurations": [
         {
-			"name": "(gdb) nbaton-ns3",
-			"type": "cppdbg",
-			"request": "launch",
-            // my build folder is ${workspaceFolder}/build, substitute with yours
-			"program": "${workspaceFolder}/../../build/contrib/*TO_YOUR_DEBUG_FILE",
-			"args": [],
-			"stopAtEntry": false,
-			"cwd": "${workspaceFolder}",
-            // replace the values below with those found from running   
-            // $ waf shell
-            // $ env 
-			"environment": [
-				{
-					"Name": "PYTHONPATH",
-					"Value": "REPLACE_THIS_WITH_YOUR_*PYTHONPATH*_VALUES"
-
-				},
-				{
-					"Name": "LD_LIBRARY_PATH",
-					"Value": "REPLACE_THIS_WITH_YOUR_*LD_LIBRARY_PATH*_VALUES"
-				},
-				{
-					"Name": "NS3_MODULE_PATH",
-					"Value": "REPLACE_THIS_WITH_YOUR_*NS3_MODULE_PATH*_VALUES"
-
-				},
-				{
-					"Name": "NS3_EXECUTABLE_PATH",
-					"Value": "REPLACE_THIS_WITH_YOUR_*NS3_EXECUTABLE_PATH*_VALUES"
-
-				},
-				{
-					"Name": "PATH",
-					"Value": "REPLACE_THIS_WITH_YOUR_*PATH*_VALUES"
-
-				}
-			],
-			"externalConsole": false,
-			"MIMode": "gdb",
-			"miDebuggerPath": "/usr/bin/gdb",
-			"setupCommands": [{
-				"description": "Enable pretty-printing for gdb",
-				"text": "-enable-pretty-printing",
-				"ignoreFailures": true
-			}],
-			"logging": {
-				"engineLogging": true,
-				"trace": true
-			}
-		}
-	]
+            "name": "(gdb) nbaton-ns3",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/../../build/contrib/*TO_YOUR_DEBUG_FILE",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [
+                {
+                    "Name": "PYTHONPATH",
+                    "Value": "REPLACE_THIS_WITH_YOUR_*PYTHONPATH*_VALUES"
+                },
+                {
+                    "Name": "LD_LIBRARY_PATH",
+                    "Value": "REPLACE_THIS_WITH_YOUR_*LD_LIBRARY_PATH*_VALUES"
+                },
+                {
+                    "Name": "NS3_MODULE_PATH",
+                    "Value": "REPLACE_THIS_WITH_YOUR_*NS3_MODULE_PATH*_VALUES"
+                },
+                {
+                    "Name": "NS3_EXECUTABLE_PATH",
+                    "Value": "REPLACE_THIS_WITH_YOUR_*NS3_EXECUTABLE_PATH*_VALUES"
+                },
+                {
+                    "Name": "PATH",
+                    "Value": "REPLACE_THIS_WITH_YOUR_*PATH*_VALUES"
+                }
+            ],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "/usr/bin/gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "logging": {
+                "engineLogging": true,
+                "trace": true
+            }
+        }
+    ]
 }
 ```
 
@@ -126,17 +127,18 @@ Since your module is located in `ns-3/contrib/your-module` you can simply call t
 
 ```json
 {
-	"version": "2.0.0",
-	"tasks": [{
-		"label": "echo",
-		"type": "shell",
-		"command": "../.././waf",
-		"group": {
-			"kind": "build",
-			"isDefault": true
-		}
-
-	}]
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "echo",
+            "type": "shell",
+            "command": "../.././waf",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
 }
 ```
 
