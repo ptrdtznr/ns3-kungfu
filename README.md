@@ -41,112 +41,98 @@ I am working with [vscode](https://code.visualstudio.com/), a super code editor.
 ```
 ## c_cpp_properties.json
 ```json
-
 {
-    "configurations": [
-        {
-            "name": "Linux",
-            "includePath": [
-                "${workspaceFolder}/**", 
-                "~/bake/source/ns-3.31/build"
-            ],
-            "defines": [],
-            "compilerPath": "/usr/bin/gcc", 
-            "cppStandard": "gnu++17",
-            "intelliSenseMode": "gcc-x64",
-            "compileCommands": "~/bake/source/ns-3.31/build/compile_commands.json"
-        }
-    ],
-    "version": 4
+	"configurations": [{
+		"name": "Linux",
+		"includePath": [
+			"${workspaceFolder}/**",
+			"~/bake/source/ns-3.31/build"
+		],
+		"defines": [],
+		"compilerPath": "/usr/bin/gcc",
+		"cppStandard": "gnu++17",
+		"intelliSenseMode": "gcc-x64",
+		"compileCommands": "~/bake/source/ns-3.31/build/compile_commands.json"
+	}],
+	"version": 4
 }
 ```
 
 ## launch.json
-```json
+```jsonc
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
-    "configurations": [
-        {
-            // Launch config emulates waf environment, calls gdb directly
-            "name": "(gdb) nbaton-ns3",
-            "type": "cppdbg",
-            "request": "launch",
-            // my build folder is ${workspaceFolder}/build, substitute yours
-            "program": "${workspaceFolder}/../../build/contrib/nbaton-ns3/examples/ns3.31-nbaton-ns3-debug",
-            "args": [],
-            "stopAtEntry": false,
-            "cwd": "${workspaceFolder}",
+    // Launch config emulates waf environment, calls gdb directly
+	"version": "0.2.0",
+	"configurations": [{
+			"name": "(gdb) nbaton-ns3",
+			"type": "cppdbg",
+			"request": "launch",
+            // my build folder is ${workspaceFolder}/build, substitute with yours
+			"program": "${workspaceFolder}/../../build/contrib/*TO_YOUR_DEBUG_FILE",
+			"args": [],
+			"stopAtEntry": false,
+			"cwd": "${workspaceFolder}",
             // replace the values below with those found from running   
             // $ waf shell
             // $ env 
-            "environment": [
-                
-                {
-                    "Name": "PYTHONPATH",
-                    "Value": "REPLACE_THIS_WITH_YOUR_*PYTHONPATH*_VALUES"
+			"environment": [
+				{
+					"Name": "PYTHONPATH",
+					"Value": "REPLACE_THIS_WITH_YOUR_*PYTHONPATH*_VALUES"
 
-                },
-                {
-                    "Name": "LD_LIBRARY_PATH",
-                    "Value": "REPLACE_THIS_WITH_YOUR_*LD_LIBRARY_PATH*_VALUES"
-                },
-                {
-                    "Name": "NS3_MODULE_PATH",
-                    "Value": "REPLACE_THIS_WITH_YOUR_*NS3_MODULE_PATH*_VALUES"
+				},
+				{
+					"Name": "LD_LIBRARY_PATH",
+					"Value": "REPLACE_THIS_WITH_YOUR_*LD_LIBRARY_PATH*_VALUES"
+				},
+				{
+					"Name": "NS3_MODULE_PATH",
+					"Value": "REPLACE_THIS_WITH_YOUR_*NS3_MODULE_PATH*_VALUES"
 
-                },
-                {
-                    "Name": "NS3_EXECUTABLE_PATH",
-                    "Value": "REPLACE_THIS_WITH_YOUR_*NS3_EXECUTABLE_PATH*_VALUES"
+				},
+				{
+					"Name": "NS3_EXECUTABLE_PATH",
+					"Value": "REPLACE_THIS_WITH_YOUR_*NS3_EXECUTABLE_PATH*_VALUES"
 
-                },
-                {
-                    "Name": "PATH",
-                    "Value": "REPLACE_THIS_WITH_YOUR_*PATH*_VALUES"
+				},
+				{
+					"Name": "PATH",
+					"Value": "REPLACE_THIS_WITH_YOUR_*PATH*_VALUES"
 
-                }
-            ],
-            "externalConsole": false,
-            "MIMode": "gdb",
-            "miDebuggerPath": "/usr/bin/gdb",
-            "setupCommands": [
-                {
-                    "description": "Enable pretty-printing for gdb",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
-                }
-            ],
-            "logging": {
-                "engineLogging": true,
-                "trace": true
-            }
-        }
-        
-    ]
+				}
+			],
+			"externalConsole": false,
+			"MIMode": "gdb",
+			"miDebuggerPath": "/usr/bin/gdb",
+			"setupCommands": [{
+				"description": "Enable pretty-printing for gdb",
+				"text": "-enable-pretty-printing",
+				"ignoreFailures": true
+			}],
+			"logging": {
+				"engineLogging": true,
+				"trace": true
+			}
+		}
+
+	]
 }
 ```
 
 ## tasks.json
 ```json
 {
-    // See https://go.microsoft.com/fwlink/?LinkId=733558
-    // for the documentation about the tasks.json format
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "label": "echo",
-            "type": "shell",
-            "command": "../.././waf", 
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
+	"version": "2.0.0",
+	"tasks": [{
+		"label": "echo",
+		"type": "shell",
+		"command": "../.././waf",
+		"group": {
+			"kind": "build",
+			"isDefault": true
+		}
 
-        }
-    ]
+	}]
 }
 ```
 
